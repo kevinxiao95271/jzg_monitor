@@ -22,4 +22,7 @@ zabbix agent安装：
     ss -tunelp | grep 10050
     参照 https://blog.csdn.net/qq_33633013/article/details/83503804
     apt install python-simplejson -y
+    
+zabbix agent重启：
+    systemctl restart zabbix-agent
 ```
