@@ -8,6 +8,7 @@ Step3 本地命令ok之后，配置zabbix agent的conf文件。增加命令项�
 
 Step4 zabbix管理页面，导入模板&立即刷新，即可看到数据展示到界面。
 
+```
 zabbix agent安装：
     在Ubuntu 18.04、CentOS 7上安装和配置Zabbix agent 4.0的方法
     参考 https://ywnz.com/linuxyffq/4186.html
@@ -21,3 +22,4 @@ zabbix agent安装：
     ss -tunelp | grep 10050
     参照 https://blog.csdn.net/qq_33633013/article/details/83503804
     apt install python-simplejson -y
+```
