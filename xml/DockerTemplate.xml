@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-05-13T15:07:14Z</date>
+    <groups>
+        <group>
+            <name>DiscoveredHosts</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>DockerTemplate</template>
+            <name>DockerTemplate</name>
+            <groups>
+                <group>
+                    <name>DiscoveredHosts</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>docker_discovery</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>docker_discovery</name>
+                    <key>docker_discovery</key>
+                    <delay>30s</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#CONTAINERNAME}</macro>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} cpu_percent进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} cpu_percent]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{max(5m)}&gt;80</expression>
+                                    <name>{#CONTAINERNAME} cpu_percent报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} cpu_system_usage进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} cpu_system_usage]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change(5m)}&gt;50000000</expression>
+                                    <name>{#CONTAINERNAME} cpu_system_usage进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} cpu_total_usage进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} cpu_total_usage]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change(5m)}&gt;20000</expression>
+                                    <name>{#CONTAINERNAME} cpu_total_usage进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} mem_limit进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} mem_limit]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{max(5m)}&gt;20000000000</expression>
+                                    <name>{#CONTAINERNAME} mem_limit进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} mem_percent进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} mem_percent]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{max(5m)}&gt;20</expression>
+                                    <name>{#CONTAINERNAME} mem_percent进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} mem_usage进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} mem_usage]</key>
+                            <delay>30s</delay>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{max(5m)}&gt;3000000000</expression>
+                                    <name>{#CONTAINERNAME} mem_usage进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} network_rx_bytes进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} network_rx_bytes]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change(5m)}&gt;259200</expression>
+                                    <name>{#CONTAINERNAME} network_rx_bytes进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#CONTAINERNAME} network_tx_bytes进程报警</name>
+                            <key>docker_status[{#CONTAINERNAME} network_tx_bytes]</key>
+                            <delay>30s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>docker_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change(5m)}&gt;258000</expression>
+                                    <name>{#CONTAINERNAME} network_tx_bytes进程报警</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <graph_prototypes>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} cpu_percent进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} cpu_percent]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} cpu_system_usage进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} cpu_system_usage]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} cpu_total_usage进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} cpu_total_usage]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} mem_limit进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} mem_limit]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} mem_percent进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} mem_percent]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} mem_usage进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} mem_usage]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} network_rx_bytes进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} network_rx_bytes]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                        <graph_prototype>
+                            <name>{#CONTAINERNAME} network_tx_bytes进程报警</name>
+                            <graph_items>
+                                <graph_item>
+                                    <color>1A7C11</color>
+                                    <item>
+                                        <host>DockerTemplate</host>
+                                        <key>docker_status[{#CONTAINERNAME} network_tx_bytes]</key>
+                                    </item>
+                                </graph_item>
+                            </graph_items>
+                        </graph_prototype>
+                    </graph_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>4.4</version>
+    <date>2020-05-13T15:17:43Z</date>
+    <groups>
+        <group>
+            <name>DiscoveredHosts</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>WxReferTemplate</template>
+            <name>WxReferTemplate</name>
+            <groups>
+                <group>
+                    <name>DiscoveredHosts</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>wx_refer_discovery</name>
+                </application>
+            </applications>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>wx_refer_discovery</name>
+                    <key>wx_refer_discovery</key>
+                    <delay>90s</delay>
+                    <filter>
+                        <conditions>
+                            <condition>
+                                <macro>{#REFERNAME}</macro>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#REFERNAME} 总数</name>
+                            <key>wx_refer_count[{#REFERNAME}]</key>
+                            <delay>90s</delay>
+                            <value_type>FLOAT</value_type>
+                            <applications>
+                                <application>
+                                    <name>wx_refer_discovery</name>
+                                </application>
+                            </applications>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{change(5m)}&gt;80000</expression>
+                                    <name>{#REFERNAME} 总数突变</name>
+                                    <priority>HIGH</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>
